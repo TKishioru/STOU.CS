@@ -29,4 +29,19 @@ public class MessageService {
     public void deleteMessage(Message message) {
         messageRepository.delete(message);
     }
+
+    public Optional<Message> findById(Integer id){
+        return messageRepository.findById(id);
+    }
+
+    public void save(Message message) {
+        messageRepository.save(message);
+    }
+
+    public List<Message> listAll(String keyword) {
+        if(keyword != null){
+            return messageRepository.findByMessageContainingIgnoreCase(keyword);
+        }
+        return messageRepository.findAll();
+    }
 }

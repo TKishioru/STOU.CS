@@ -1,6 +1,9 @@
 package com.stou.example.thymeleaf.springapp3myownapp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +18,9 @@ public class MainController {
     @Autowired private MessageService messageService;
 
     @GetMapping("/")
-    public String getIndex(Model model) {
-        model.addAttribute("messages", messageService.getMessage());
+    public String getIndex(Model model, @Param("keyword") String keyword) {
+        List<Message> listMessages = messageService.listAll(keyword);
+        model.addAttribute("messages", listMessages);
         return "index";
     }
     
@@ -38,4 +42,16 @@ public class MainController {
         return "redirect:/";
     }
     
+    @GetMapping("/editmessage/{id}")
+    public String showUpdateMessageForm(@PathVariable("id") Integer id, Model model) {
+        Message message = messageService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("message", message);
+        return "updatemessageform";
+    }
+    
+    @PostMapping("/updatemessage/{id}")
+    public String updateMessageForm(@PathVariable("id") Integer id, @ModelAttribute("messages") Message message) {
+        messageService.save(message);
+        return "redirect:/";
+    }
 }
