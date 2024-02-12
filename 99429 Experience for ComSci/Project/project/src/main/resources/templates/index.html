@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <title>My NEWS</title>
+    <style>
+        :root {
+            --Primary-color: #a32422;
+            --Secondary-color: #5c100f;
+            --Primary-grey-color: #dcdcdc;
+            --Secondary-grey-color: #b1b1b1;
+            --White-color: #fff;
+            --Black-color: #0f0f0f;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: content-box;
+        }
+
+        body {
+            font-family: Poppins;
+        }
+
+        .content {
+            width: 100vw;
+        }
+
+        ื.navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #cdcdcd;
+        }
+
+        .navbar>div {
+            display: inline-flex;
+        }
+
+        .logo {
+            width: calc(100% - 250px);
+            padding-left: 20px;
+            font-weight: 800;
+            color: var(--Black-color);
+        }
+
+        span {
+            font-weight: 800;
+            color: var(--Primary-color);
+        }
+
+        .search {
+            display: inline-flex;
+            justify-content: end;
+            width: 200px;
+        }
+
+        input {
+            padding: 4px 8px;
+            border: 1px solid #cdcdcd;
+            border-radius: 4px;
+        }
+
+        .btn {
+            padding: 4px;
+            margin-left: 4px;
+            border: none;
+            border-radius: 4px;
+            color: var(--White-color);
+            background-color: var(--Primary-color);
+        }
+
+        .btn:hover {
+            background-color: var(--Secondary-color);
+        }
+
+        .icon-action {
+            display: inline-flex;
+            gap: 8px;
+        }
+
+        .icon-action>a {
+            color: var(--Primary-grey-color);
+            text-align: center;
+            padding: 4px;
+        }
+
+        .icon-action>a:hover {
+            color: var(--Secondary-grey-color);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .add-content {
+            border-radius: 4px;
+            color: var(--White-color);
+            background-color: var(--Primary-color);
+            text-align: center;
+            padding: 4px 8px;
+        }
+
+        .add-content:hover {
+            background-color: var(--Secondary-color);
+        }
+
+        .card {
+            margin: 18px;
+            padding: 18px 24px;
+            border: none;
+            box-shadow: 0px 0px 4px 0px rgba(73, 62, 62, 0.75);
+        }
+
+        .action {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .TopicID {
+            font-size: 14px;
+        }
+
+        .content_topic {
+            font-size: 22px;
+        }
+
+        .content_news {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="navbar" style="padding: 12px 0px;">
+            <div class="logo">
+                <h1><span>N</span>EWS</h1>
+            </div>
+            <div class="search">
+                <form action="/" method="get">
+                    <div class="form-group">
+                        <input type="text" name="keyword" placeholder="Search...">
+                        <button type="submit" class="btn btn-default"><i class='fa fa-search'></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div style="width: calc(100% - 30px); text-align: end;">
+            <a class="add-content" href="/newmessage"><i class='fa fa-plus'></i> NEW</a>
+        </div>
+
+        <div class="card" th:each="m:${messages}">
+            <div class="action">
+                <div class="TopicID" style="display: inline-flex;">
+                    <p>#</p>
+                    <p th:text="${m.id}"></p>
+                </div>
+                <div class="icon-action">
+                    <a th:href="@{/editmessage/{id}(id=${m.id})}"><i class='fa fa-pencil'></i></a>
+                    <a th:href="@{/deletemessage/{id}(id=${m.id})}"><i class='fa fa-trash'></i></a>
+                </div>
+            </div>
+            <p class="content_topic" th:text="${m.topic}"></p>
+            <p class="content_news" th:text="${m.message}"></p>
+        </div>
+    </div>
+</body>
+
+</html>
