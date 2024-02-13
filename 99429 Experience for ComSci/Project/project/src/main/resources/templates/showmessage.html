@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>My NEWS</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <style>
+        :root {
+            --Primary-color: #25b34a;
+            --Secondary-color: #178c36;
+            --Primary-grey-color: #dcdcdc;
+            --Secondary-grey-color: #b1b1b1;
+            --White-color: #fff;
+            --Black-color: #0f0f0f;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Poppins;
+        }
+
+        .container {
+            width: 100vw;
+            padding: 12px 20px;
+        }
+        .form-group{
+            margin-top: 12px;
+        }
+        .btn-action{
+            width: 100%;
+            display: inline-flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 24px;
+        }
+        .btn-back{
+            padding: 4px 8px;
+            border: 1px solid var(--Primary-grey-color);
+            border-radius: 8px;
+            background-color: var(--Primary-grey-color);
+            color: var(--White-color);
+        }
+        .btn-back:hover{
+            background-color: var(--Secondary-grey-color);
+        }
+        .topic-header{
+            width: 100%;
+            margin-top: 24px;
+            font-size: 28px;
+            text-align: center;
+            font-weight: 800;
+            color: var(--Primary-color);
+        }
+        .content-date{
+            text-align: right;
+            width: 100%;
+            color: var(--Secondary-grey-color);
+        }
+        .content-detail{
+            margin: 20px 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div th:object="${message}">
+            <h1 class="topic-header" th:text="${message.topic}"></h1>
+            <p class="content-date" th:text="${message.date}"></p>
+            <p class="content-detail" th:text="${message.message}"></p>
+            <div class="btn-action">
+                <a href="/" class="btn-back">Back</a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

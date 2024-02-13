@@ -24,8 +24,20 @@ public class MainController {
         return "index";
     }
     
+    // @GetMapping("/{id}")
+    // public String showMessage(@PathVariable("id") Integer id, @ModelAttribute("messages") Message message) {
+    //     messageService.findMessageByID(id);
+    //     return "showmessage";
+    // }
+    @GetMapping("/showmessage/{id}")
+    public String showMessage(@PathVariable("id") Integer id, Model model) {
+        Message message = messageService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("message", message);
+        return "showmessage";
+    }
+
     @GetMapping("/newmessage")
-    public String showMessageForm() {
+    public String newMessageForm() {
         return "messageform";
     }
 

@@ -9,8 +9,8 @@
     <title>My NEWS</title>
     <style>
         :root {
-            --Primary-color: #a32422;
-            --Secondary-color: #5c100f;
+            --Primary-color: #25b34a;
+            --Secondary-color: #178c36;
             --Primary-grey-color: #dcdcdc;
             --Secondary-grey-color: #b1b1b1;
             --White-color: #fff;
@@ -30,14 +30,16 @@
         .container {
             width: 100vw;
         }
-
+        .logo_img{
+            height: 30px;
+        }
         .navbar {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #cdcdcd;
             padding: 12px 20px;
+            box-shadow: 0px 0px 4px 0px rgba(72, 101, 73, 0.75);
         }
 
         .navbar>div {
@@ -115,7 +117,7 @@
         .content-all > .card{
             width: auto;
             min-width: 250px;
-            max-width: 500px;
+            max-width: 450px;
         }
 
         .card {
@@ -142,9 +144,16 @@
             font-size: 22px;
             color: var(--Primary-color);
         }
-
+        .content_topic:hover{
+            color: var(--Secondary-color);
+        }
         .content_news {
             font-size: 14px;
+        }
+        .content_img{
+            width: 100%;
+            margin-bottom: 12px;
+            border-radius: 16px;
         }
     </style>
 </head>
@@ -153,7 +162,8 @@
     <div class="container">
         <div class="navbar">
             <div class="logo">
-                <h1><span>N</span>EWS</h1>
+                <img class="logo_img" th:src="@{/images/logo.png}" alt="Thairat" />
+                <!-- <h1><span>N</span>EWS</h1> -->
             </div>
             <div class="search">
                 <form action="/" method="get">
@@ -175,13 +185,17 @@
                         <p>#</p>
                         <p th:text="${m.id}"></p>
                     </div>
+                    
                     <div class="icon-action">
                         <a th:href="@{/editmessage/{id}(id=${m.id})}"><i class='fa fa-pencil'></i></a>
                         <a th:href="@{/deletemessage/{id}(id=${m.id})}"><i class='fa fa-trash'></i></a>
                     </div>
                 </div>
-                <p class="content_topic" th:text="${m.topic}"></p>
-                <p class="content_news" th:text="${m.message}"></p>
+                <div style="width: 100%;">
+                    <img class="content_img" th:src="${m.imageLink}" alt="Image">
+                </div>
+                <a th:href="@{/showmessage/{id}(id=${m.id})}" class="content_topic" th:text="${m.topic}"></a>
+                <p class="content_news" th:text="${m.message}"></p>    
             </div>
         </div>
     </div>

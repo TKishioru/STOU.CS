@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>My NEWS</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <style>
         :root {
-            --Primary-color: #a32422;
-            --Secondary-color: #5c100f;
+            --Primary-color: #25b34a;
+            --Secondary-color: #178c36;
             --Primary-grey-color: #dcdcdc;
             --Secondary-grey-color: #b1b1b1;
             --White-color: #fff;
@@ -30,14 +32,17 @@
             width: 100vw;
             padding: 12px 20px;
         }
+
         span {
             font-weight: 800;
             color: var(--Primary-color);
         }
-        .form-group{
+
+        .form-group {
             margin-top: 12px;
         }
-        .btn-action{
+
+        .btn-action {
             width: 100%;
             display: inline-flex;
             gap: 12px;
@@ -45,33 +50,46 @@
             align-items: center;
             margin-top: 24px;
         }
-        button[type="submit"]{
+
+        button[type="submit"] {
             background-color: var(--Primary-color);
             color: var(--White-color);
         }
-        button[type="submit"]:hover{
+
+        button[type="submit"]:hover {
             background-color: var(--Secondary-color);
         }
-        button[type="reset"]{
+
+        button[type="reset"] {
             background-color: var(--Primary-grey-color);
             color: var(--White-color);
         }
-        button[type="reset"]:hover{
+
+        button[type="reset"]:hover {
             background-color: var(--Secondary-grey-color);
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1><span>Create</span> Content Form</h1>
         <form action="/addmessage" method="post">
             <div class="form-group">
                 <label class="sr-only">Topic:</label>
-                <input type="text" class="form-control" name="topic" placeholder="topic">
+                <input type="text" class="form-control" name="topic" placeholder="topic" required>
+            </div>
+            <div class="form-group">
+                <label class="sr-only">Date:</label>
+                <input type="date" class="form-control" name="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <label class="sr-only">Image Link:</label>
+                <input type="text" class="form-control" name="imageLink" placeholder="image link" required>
             </div>
             <div class="form-group">
                 <label class="sr-only">Detail:</label>
-                <input type="text" class="form-control" name="message" placeholder="detail for content">
+                <textarea rows="8" type="text" class="form-control" name="message" placeholder="detail for content" required></textarea>
             </div>
             <div class="btn-action">
                 <button type="submit" class="btn btn-default">Submit</button>
@@ -80,4 +98,17 @@
         </form>
     </div>
 </body>
+
 </html>
+<script>
+    // getFullYear, getMonth, getDate, getHours, getMinutes all return values of local time.
+    const convertToDateTimeLocalString = (date) => {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const day = date.getDate().toString().padStart(2, "0");
+
+        return `${year}-${month}-${day}`;
+    }
+    const currentTime = new Date().atZone( ZoneId.of( "Asia/Bangkok" ));
+    document.getElementById('time').value = convertToDateTimeLocalString(currentTime)
+</script>

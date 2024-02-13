@@ -12,6 +12,8 @@ public class Message {
     private int id;
     private String topic;
     private String message;
+    private String imageLink;
+    private String date;
 
     public Message() {
     }
@@ -19,11 +21,15 @@ public class Message {
         this.message = message;
     }
     public Message(String topic, String message) {
+        this.topic = topic;
         this.message = message;
     }
-    public Message(int id, String topic, String message) {
+    public Message(int id, String topic, String message, String imageLink, String date) {
         this.id = id;
+        this.topic = topic;
         this.message = message;
+        this.imageLink = imageLink;
+        this.date = date;
     }
     public int getId() {
         return id;
@@ -43,6 +49,19 @@ public class Message {
     public void setMessage(String message) {
         this.message = message;
     }
+    public String getImageLink() {
+        return imageLink;
+    }
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+    public String getDate() {
+        return date;
+    }
+    public void setDate(String date) {
+        this.date = date;
+    }
+    
 /* 
     @Override
     public String toString() {
