@@ -20,23 +20,24 @@
         * {
             padding: 0;
             margin: 0;
-            box-sizing: content-box;
+            box-sizing: border-box;
         }
 
         body {
             font-family: Poppins;
         }
 
-        .content {
+        .container {
             width: 100vw;
         }
 
-        ื.navbar {
+        .navbar {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background-color: #cdcdcd;
+            padding: 12px 20px;
         }
 
         .navbar>div {
@@ -44,8 +45,6 @@
         }
 
         .logo {
-            width: calc(100% - 250px);
-            padding-left: 20px;
             font-weight: 800;
             color: var(--Black-color);
         }
@@ -57,8 +56,6 @@
 
         .search {
             display: inline-flex;
-            justify-content: end;
-            width: 200px;
         }
 
         input {
@@ -140,8 +137,8 @@
 </head>
 
 <body>
-    <div class="content">
-        <div class="navbar" style="padding: 12px 0px;">
+    <div class="container">
+        <div class="navbar">
             <div class="logo">
                 <h1><span>N</span>EWS</h1>
             </div>
@@ -154,7 +151,8 @@
                 </form>
             </div>
         </div>
-        <div style="width: calc(100% - 30px); text-align: end;">
+        <br>
+        <div style="width: 100%; padding-right: 20px; text-align: end;">
             <a class="add-content" href="/newmessage"><i class='fa fa-plus'></i> NEW</a>
         </div>
 
@@ -169,7 +167,7 @@
                     <a th:href="@{/deletemessage/{id}(id=${m.id})}"><i class='fa fa-trash'></i></a>
                 </div>
             </div>
-            <p class="content_topic" th:text="${m.topic}"></p>
+            <p class="content_topic" th:text="${m.message}"></p>
             <p class="content_news" th:text="${m.message}"></p>
         </div>
     </div>

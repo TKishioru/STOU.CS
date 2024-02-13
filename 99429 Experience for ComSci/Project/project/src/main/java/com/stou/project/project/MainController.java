@@ -50,8 +50,8 @@ public class MainController {
     }
     
     @PostMapping("/updatemessage/{id}")
-    public String updateMessageForm(@PathVariable("id") Integer id, @ModelAttribute("messages") Message message) {
-        messageService.save(message);
+    public String updateMessageForm(@PathVariable("id") Integer id, @ModelAttribute("messages") Message message, @ModelAttribute("topic") Message topic) {
+        messageService.save(message,topic);
         return "redirect:/";
     }
 }
