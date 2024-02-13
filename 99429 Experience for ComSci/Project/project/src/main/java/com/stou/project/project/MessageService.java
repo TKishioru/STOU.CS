@@ -40,7 +40,7 @@ public class MessageService {
 
     public List<Message> listAll(String keyword) {
         if(keyword != null){
-            return messageRepository.findByMessageContainingIgnoreCase(keyword);
+            return messageRepository.findByTopicContainingIgnoreCase(keyword);
         }
         return messageRepository.findAll();
     }

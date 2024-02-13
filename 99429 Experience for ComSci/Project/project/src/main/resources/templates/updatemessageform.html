@@ -45,11 +45,14 @@
             align-items: center;
             margin-top: 24px;
         }
-        button[type="submit"]{
+        input[type="submit"]{
+            padding: 4px 8px;
+            border: 1px solid var(--Primary-color);
+            border-radius: 8px;
             background-color: var(--Primary-color);
             color: var(--White-color);
         }
-        button[type="submit"]:hover{
+        input[type="submit"]:hover{
             background-color: var(--Secondary-color);
         }
     </style>
@@ -62,12 +65,12 @@
         <div>
             <form th:action="@{/updatemessage/{id}(id=${message.id})}" th:object="${message}" method="post">
                 <div class="form-group">
-                    <label>Topic:</label>
-                    <input type="text" th:field="*{message.topic}" id="topic">
+                    <label class="sr-only">Topic:</label>
+                    <input type="text" class="form-control" th:field="*{topic}" id="topic">
                 </div>
                 <div class="form-group">
-                    <label>Detail:</label>
-                    <input type="text" th:field="*{message.message}" id="message">
+                    <label class="sr-only">Detail:</label>
+                    <input type="text" class="form-control" th:field="*{message}" id="message">
                 </div>
                 <div class="btn-action">
                     <input type="submit" value="Update">

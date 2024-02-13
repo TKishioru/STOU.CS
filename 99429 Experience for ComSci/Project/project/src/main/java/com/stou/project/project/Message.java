@@ -10,6 +10,7 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String topic;
     private String message;
 
     public Message() {
@@ -17,7 +18,10 @@ public class Message {
     public Message(String message) {
         this.message = message;
     }
-    public Message(int id, String message) {
+    public Message(String topic, String message) {
+        this.message = message;
+    }
+    public Message(int id, String topic, String message) {
         this.id = id;
         this.message = message;
     }
@@ -26,6 +30,12 @@ public class Message {
     }
     public void setId(int id) {
         this.id = id;
+    }
+    public String getTopic() {
+        return topic;
+    }
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
     public String getMessage() {
         return message;
@@ -40,5 +50,6 @@ public class Message {
                 "id=" + id +
                 ", message='" + message + '\'' +
                 '}';
-    }*/
+    }
+*/   
 }

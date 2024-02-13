@@ -108,10 +108,21 @@
             background-color: var(--Secondary-color);
         }
 
+        .content-all{
+            display: inline-flex;
+            flex-wrap: wrap;
+        }
+        .content-all > .card{
+            width: auto;
+            min-width: 250px;
+            max-width: 500px;
+        }
+
         .card {
             margin: 18px;
             padding: 18px 24px;
             border: none;
+            border-radius: 16px;
             box-shadow: 0px 0px 4px 0px rgba(73, 62, 62, 0.75);
         }
 
@@ -124,10 +135,12 @@
 
         .TopicID {
             font-size: 14px;
+            color: var(--Secondary-grey-color);
         }
 
         .content_topic {
             font-size: 22px;
+            color: var(--Primary-color);
         }
 
         .content_news {
@@ -155,20 +168,21 @@
         <div style="width: 100%; padding-right: 20px; text-align: end;">
             <a class="add-content" href="/newmessage"><i class='fa fa-plus'></i> NEW</a>
         </div>
-
-        <div class="card" th:each="m:${messages}">
-            <div class="action">
-                <div class="TopicID" style="display: inline-flex;">
-                    <p>#</p>
-                    <p th:text="${m.id}"></p>
+        <div class="content-all">
+            <div class="card" th:each="m:${messages}">
+                <div class="action">
+                    <div class="TopicID" style="display: inline-flex;">
+                        <p>#</p>
+                        <p th:text="${m.id}"></p>
+                    </div>
+                    <div class="icon-action">
+                        <a th:href="@{/editmessage/{id}(id=${m.id})}"><i class='fa fa-pencil'></i></a>
+                        <a th:href="@{/deletemessage/{id}(id=${m.id})}"><i class='fa fa-trash'></i></a>
+                    </div>
                 </div>
-                <div class="icon-action">
-                    <a th:href="@{/editmessage/{id}(id=${m.id})}"><i class='fa fa-pencil'></i></a>
-                    <a th:href="@{/deletemessage/{id}(id=${m.id})}"><i class='fa fa-trash'></i></a>
-                </div>
+                <p class="content_topic" th:text="${m.topic}"></p>
+                <p class="content_news" th:text="${m.message}"></p>
             </div>
-            <p class="content_topic" th:text="${m.message}"></p>
-            <p class="content_news" th:text="${m.message}"></p>
         </div>
     </div>
 </body>
